@@ -1,5 +1,6 @@
 
 package matrices;
+
 import static matrices.Matrices.in;
 
 public class operaciones {
@@ -55,16 +56,20 @@ public class operaciones {
     
     
     public static void productoMatriz(double[][] x,double [][] y){
-        
         if(y.length==x[1].length){
+            double [][]z = new double[x.length][y[1].length];
+            int suma=0;
             
             for (int i=0;i<x.length;i++){
-                for(int j=0;j<x[i].length;j++){
-                    x[i][j]= (x[i][j]*y[i][j]);
+                for(int j=0;j<y[0].length;j++){
+                    suma=0;
+                    for(int k=0; k<y.length; k++){
+                        suma+=x[i][k]*y[k][j];
+                    }
+                    z[i][j]= suma;
                 }
             }
-            imprimir(x);
-            
+            imprimir(z);
         }else{
             System.out.println("Para poder multiplicar matrices, la primera matriz debe"
                     + " tener el mismo nujmero de columnas que las filas de la segunda");
@@ -81,13 +86,15 @@ public class operaciones {
     }
     
     public static void traspuesta(double[][]x){
-        double [][]t= x;
+        double [][]t= new double[x[1].length][x.length];
         
-        for(int i=0; i<x.length; i++ ){
-            for(int j=0; j<x[1].length; j++){
-                t[j][i]= x[i][j];
+        for(int i=0; i<t.length; i++ ){
+            for(int j=0; j<t[1].length; j++){
+                t[i][j]= x[j][i];
             }
         }
-        imprimir (x);
+        System.out.println(x.length);
+        
+        imprimir (t);
     }
 }

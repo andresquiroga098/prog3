@@ -8,22 +8,23 @@ import static matrices.operaciones.sumaMatriz;
 import java.io.IOException;
 import java.util.Scanner;
 import static matrices.operaciones.productoEscalar;
+import static matrices.operaciones.productoMatriz;
 import static matrices.operaciones.traspuesta;
 
 public class Matrices {
 
     static Scanner in= new Scanner(System.in);
-     public static void main(String[] args) throws IOException {
-       int s=1;
+        public static void main(String[] args) throws IOException {
+        int s=1;
         do{
             int op;
 
             System.out.println("\n\t\tMenu deoperaciones\n");
-            System.out.println("1. Suma\n2. Producto\n3.Producto por escalar\n4.Traspuesta\n5. Salir");
+            System.out.println("1. Suma\n2. Producto\n3. Producto por escalar\n4. Traspuesta\n5. Salir");
             System.out.print("Ingrese una opcion: "); op=in.nextInt();
 
             switch(op){
-                case 1:{
+                case 1 -> {
                     int[] x=null, y=null;
 
                     System.out.println("\nPrimera matriz\n");
@@ -41,10 +42,9 @@ public class Matrices {
                     System.out.println("\nLa suma de matrices es");
                     sumaMatriz(matriz_1,matriz_2);
 
-                    break;
 
                 }
-                case 2:{
+                case 2 -> {
                     int[] x=null, y=null;
 
                     System.out.println("\nPrimera matriz\n");
@@ -58,10 +58,12 @@ public class Matrices {
                     double [][]matriz_2=new double[y[0]][y[1]];
                     matriz_2=crearMatriz(matriz_2);
                     imprimir(matriz_2);
+                    System.out.println("\n");
+                    
+                    productoMatriz(matriz_1, matriz_2);
 
-                    break;
                 }
-                case 3:{
+                case 3 -> {
                     int[] x=null;
                     double escalar;
                     
@@ -69,15 +71,15 @@ public class Matrices {
                     x= tamaño(x);
                     double [][]matriz_1= new double [x[0]][x[1]];
                     matriz_1=crearMatriz(matriz_1);
+                    imprimir(matriz_1);
                     
                     System.out.print("Escalar: "); escalar= in.nextDouble();
                     
                     System.out.println("\nEl producto es\n");
                     productoEscalar(matriz_1,escalar);
 
-                    break;
                 }
-                case 4:{
+                case 4 -> {
                     int[] x=null;
                     
                     System.out.println("\nMatriz\n");
@@ -90,11 +92,9 @@ public class Matrices {
                     System.out.println("\nLa matriz traspuesta es\n");
                     traspuesta(matriz_1);
                     
-                    break;
                 }
-                case 5:{
+                case 5 -> {
                     s=0;
-                    break;
                 }
             }
 
@@ -103,7 +103,7 @@ public class Matrices {
             if(s==0){
                 break;
             }else{
-                System.out.print("/nDesea continuar?\n1.SI\n0.NO"); s=in.nextInt();
+                System.out.print("\nDesea continuar?\n1.SI\n0.NO"); s=in.nextInt();
             }
 
         }while(s!=0);
