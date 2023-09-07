@@ -70,4 +70,24 @@ public class operaciones {
                     + " tener el mismo nujmero de columnas que las filas de la segunda");
         }
     }
+    
+    public static void productoEscalar(double[][]x, double y){
+        for(int i=0; i<x.length; i++ ){
+            for(int j=0; j<x[1].length; j++){
+                x[i][j]= (x[i][j])*y;
+            }
+        }
+        imprimir (x);
+    }
+    
+    public static void traspuesta(double[][]x){
+        double [][]t= x;
+        
+        for(int i=0; i<x.length; i++ ){
+            for(int j=0; j<x[1].length; j++){
+                t[j][i]= x[i][j];
+            }
+        }
+        imprimir (x);
+    }
 }
