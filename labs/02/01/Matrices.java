@@ -14,7 +14,7 @@ import static matrices.operaciones.traspuesta;
 public class Matrices {
 
     static Scanner in= new Scanner(System.in);
-        public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         int s=1;
         do{
             int op;
@@ -25,79 +25,21 @@ public class Matrices {
 
             switch(op){
                 case 1 -> {
-                    int[] x=null, y=null;
-
-                    System.out.println("\nPrimera matriz\n");
-                    x= tamaño(x);
-                    double [][]matriz_1=new double[x[0]][x[1]];
-                    matriz_1=crearMatriz(matriz_1);
-                    imprimir(matriz_1);
-
-                    System.out.println("\nSegunda matriz\n");
-                    y= tamaño(y);
-                    double [][]matriz_2=new double[y[0]][y[1]];
-                    matriz_2=crearMatriz(matriz_2);
-                    imprimir(matriz_2);
-
-                    System.out.println("\nLa suma de matrices es");
-                    sumaMatriz(matriz_1,matriz_2);
-
-
+                    sumaMatrices();
                 }
                 case 2 -> {
-                    int[] x=null, y=null;
-
-                    System.out.println("\nPrimera matriz\n");
-                    x= tamaño(x);
-                    double [][]matriz_1=new double[x[0]][x[1]];
-                    matriz_1=crearMatriz(matriz_1);
-                    imprimir(matriz_1);
-
-                    System.out.println("\nSegunda matriz\n");
-                    y= tamaño(y);
-                    double [][]matriz_2=new double[y[0]][y[1]];
-                    matriz_2=crearMatriz(matriz_2);
-                    imprimir(matriz_2);
-                    System.out.println("\n");
-                    
-                    productoMatriz(matriz_1, matriz_2);
-
+                    productoMatrices();
                 }
                 case 3 -> {
-                    int[] x=null;
-                    double escalar;
-                    
-                    System.out.println("\nMatriz\n");
-                    x= tamaño(x);
-                    double [][]matriz_1= new double [x[0]][x[1]];
-                    matriz_1=crearMatriz(matriz_1);
-                    imprimir(matriz_1);
-                    
-                    System.out.print("Escalar: "); escalar= in.nextDouble();
-                    
-                    System.out.println("\nEl producto es\n");
-                    productoEscalar(matriz_1,escalar);
-
+                    productoEscalarMatriz();
                 }
                 case 4 -> {
-                    int[] x=null;
-                    
-                    System.out.println("\nMatriz\n");
-                    x= tamaño(x);
-                    double [][]matriz_1= new double [x[0]][x[1]];
-                    matriz_1=crearMatriz(matriz_1);
-                    
-                    imprimir(matriz_1);
-                    
-                    System.out.println("\nLa matriz traspuesta es\n");
-                    traspuesta(matriz_1);
-                    
+                    matrizTraspuesta(); 
                 }
                 case 5 -> {
                     s=0;
                 }
             }
-
 
             System.in.read();
             if(s==0){
@@ -108,6 +50,75 @@ public class Matrices {
 
         }while(s!=0);
        
+    }
+
+    private static void sumaMatrices() {
+        int[] x=null, y=null;
+
+        System.out.println("\nPrimera matriz\n");
+        x= tamaño(x);
+        double [][]matriz_1=new double[x[0]][x[1]];
+        matriz_1=crearMatriz(matriz_1);
+        imprimir(matriz_1);
+
+        System.out.println("\nSegunda matriz\n");
+        y= tamaño(y);
+        double [][]matriz_2=new double[y[0]][y[1]];
+        matriz_2=crearMatriz(matriz_2);
+        imprimir(matriz_2);
+
+        System.out.println("\nLa suma de matrices es");
+        sumaMatriz(matriz_1,matriz_2);
+    }
+    
+    private static void productoMatrices() {
+        int[] x=null, y=null;
+
+        System.out.println("\nPrimera matriz\n");
+        x= tamaño(x);
+        double [][]matriz_1=new double[x[0]][x[1]];
+        matriz_1=crearMatriz(matriz_1);
+        imprimir(matriz_1);
+
+        System.out.println("\nSegunda matriz\n");
+        y= tamaño(y);
+        double [][]matriz_2=new double[y[0]][y[1]];
+        matriz_2=crearMatriz(matriz_2);
+        imprimir(matriz_2);
+        System.out.println("\n");
+                    
+        productoMatriz(matriz_1, matriz_2);
+    }
+    
+    private static void productoEscalarMatriz() {
+        
+        int[] x=null;
+        double escalar;
+                    
+        System.out.println("\nMatriz\n");
+        x= tamaño(x);
+        double [][]matriz_1= new double [x[0]][x[1]];
+        matriz_1=crearMatriz(matriz_1);
+        imprimir(matriz_1);
+                    
+        System.out.print("Escalar: "); escalar= in.nextDouble();
+                    
+        System.out.println("\nEl producto es\n");
+        productoEscalar(matriz_1,escalar);
+    }
+    
+    private static void matrizTraspuesta() {
+        int[] x=null;
+                    
+        System.out.println("\nMatriz\n");
+        x= tamaño(x);
+        double [][]matriz_1= new double [x[0]][x[1]];
+        matriz_1=crearMatriz(matriz_1);
+                    
+        imprimir(matriz_1);
+                    
+        System.out.println("\nLa matriz traspuesta es\n");
+        traspuesta(matriz_1);
     }
     
 }
