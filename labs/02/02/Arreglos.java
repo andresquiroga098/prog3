@@ -6,6 +6,7 @@ import static arreglos.operaciones.imprimir;
 import static arreglos.operaciones.insercion;
 import static arreglos.operaciones.leerInt;
 import static arreglos.operaciones.mergeSort;
+import static arreglos.operaciones.mostrarTiempo;
 import static arreglos.operaciones.rellenar;
 import static arreglos.operaciones.seleccion;
 import java.io.IOException;
@@ -28,8 +29,8 @@ public class Arreglos {
            
            System.out.println("\n\n\tMetodos de ordenamiento\n");
            System.out.println("1. Burbuja\n2. Insercion\n3. Seleccion\n"
-                   + "4. MergeSort\n5. Salir");   
-           System.out.print("Ingrese una opcion: ");   op=leerInt(op);
+                   + "4. MergeSort\n5. Comparar Tiempo\n6. Salir");   
+           System.out.print("Ingrese una opcion: ");   op=leerInt(op);  System.out.println("\n");
            
            switch(op){
                case 1:{
@@ -53,8 +54,12 @@ public class Arreglos {
                    break;
                }
                case 5:{
-                   s=0;
+                   System.out.println("\n");
+                   tiempo(arreglo);
                    break;
+               }
+               case 6:{
+                   s=0; break;
                }
             }
             if(s==0){
@@ -66,6 +71,37 @@ public class Arreglos {
             }
             
         }while(s!=0);
+    }
+    
+    public static void tiempo(double[]arreglo){
+        arreglo=burbuja(arreglo);
+        System.out.println("Burbuja: ");
+        imprimir(arreglo); System.out.println("");
+        long b= mostrarTiempo();
+        
+        arreglo=insercion(arreglo);
+        System.out.println("\nInsercion: ");
+        imprimir(arreglo);  System.out.println("");
+        long i= mostrarTiempo();
+        
+        arreglo=seleccion(arreglo);
+        System.out.println("\nSeleccion: ");
+        imprimir(arreglo);  System.out.println("");
+        long s= mostrarTiempo();
+        
+        arreglo=mergeSort(arreglo);
+        System.out.println("\nMergeSort: ");
+        imprimir(arreglo); System.out.println("");
+        long m= mostrarTiempo();
+        
+        
+        System.out.println("\n\nTiempos empleados en ordenar el arrieglo: ");
+        System.out.println("Burbuja: "+b);
+        System.out.println("Insercion: "+i);
+        System.out.println("Selleccion: "+s);
+        System.out.println("MergeSort: "+m);
+       
+        
     }
     
 }

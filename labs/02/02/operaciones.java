@@ -23,6 +23,13 @@ public class operaciones {
         }
     }
     
+    public static long mostrarTiempo(){
+        long tiempo;
+        tiempo = System.nanoTime();
+        
+        return tiempo;
+    }
+    
     public static double[] burbuja(double[]x){
         double aux;
         for(int i=0; i<x.length; i++){
