@@ -68,7 +68,7 @@ public class operaciones {
            return x;
        }
        
-       int mid= (int) (x.length/2);
+       int mid= (int) Math.ceil((double)x.length/2);
        double[] left= new double[mid];
        
        int rigthLength=0;
