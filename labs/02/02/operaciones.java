@@ -1,9 +1,10 @@
 
-package arreglos;
+package arreglos; 
+
 import static arreglos.Arreglos.in;
 
+
 public class operaciones {
-    
     public static int leerInt(int x){
         x = in.nextInt();
         return x;
@@ -40,34 +41,98 @@ public class operaciones {
         double aux;
         for(int i=1; i<x.length; i++){
             aux=x[i];
-            int j= i-i;
-            while(j>=0 && x[i]>aux){
-                x[j+1]=x[j];
-                j--;
-            }
-            x[j]=aux;
+           for(int j=i-1; j>=0 && x[j]>aux; j--){
+               x[j+1]=x[j];
+               x[j]=aux;
+           }
         }
         return x;
     }
     
     public static double[] seleccion(double[]x){
-        int aux;
-        double aux_2;
-        
-        for(int i=0; i<x.length-1; i++){
-            aux=i;
-            for(int j=i+1; j<x.length; j++){
-                if(x[j]<x[aux]){
-                    aux=j;
-                }
-                aux_2=x[aux];   x[aux]=x[i];    x[i]=aux_2;
-            }
+        int aux, min;
+        for(int i=0; i<x.length; i++){
+           min=i;
+           for(int j=i+1; j<x.length; j++){
+               if(x[j]<x[min]){
+                   min=j;
+               }
+           }
+           aux=(int)x[i];  x[i]=x[min];    x[min]=aux;
         }
         return x;
     }
     
     public static double[] mergeSort(double[]x){
+       if(x.length<2){
+           return x;
+       }
+       
+       int mid= (int) (x.length/2);
+       double[] left= new double[mid];
+       
+       int rigthLength=0;
+       if(x.length%2 == 0){
+           rigthLength=mid;
+       }else{
+           rigthLength=mid-1;
+       }
+       
+       double[] rigth= new double[rigthLength];
+       
+       int leftIndex=0;
+       int rigthIndex=0;
+       
+       for(int i=0; i<x.length; i++){
+           if(i<mid){
+               left[leftIndex]= x[i];
+               leftIndex++;
+           }else{
+               rigth[rigthIndex]= x[i];
+               rigthIndex++;
+           }
+       }
+       
+       left=mergeSort(left);
+       rigth=mergeSort(rigth);
+      
+        return merge(left, rigth);
+    }
+    
+    public static double[] merge(double[]left, double[]rigth){
+        double[] result= new double[left.length + rigth.length];
+        int leftIndex=0;
+        int rigthIndex=0;
+        int resultIndex=0;
         
-        return x;
+        while(leftIndex < left.length || rigthIndex < rigth.length){
+            
+            if(leftIndex < left.length && rigthIndex < rigth.length){
+                if(left[leftIndex] < rigth[rigthIndex]){
+                    result[resultIndex]= left[leftIndex];
+                    leftIndex++;
+                    resultIndex++;
+                }
+                else{
+                    result[resultIndex]= rigth[rigthIndex];
+                    rigthIndex++;
+                    resultIndex++;
+                }
+            }
+            else if(leftIndex < left.length){
+                for(int i=resultIndex; i<result.length; i++){
+                    result[i] = left[leftIndex];
+                    leftIndex++;
+                }
+            }
+            else if(rigthIndex < rigth.length){
+                for(int i= resultIndex; i<result.length; i++){
+                    result[i]= rigth[rigthIndex];
+                    rigthIndex++;
+                }
+            }
+        }
+        return result;
+        
     }
 }
